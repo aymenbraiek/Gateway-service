@@ -10,11 +10,13 @@ import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitio
 import org.springframework.cloud.gateway.discovery.DiscoveryLocatorProperties;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 
 
 
 @SpringBootApplication
+@EnableHystrix
 public class GatewayServiceApplication {
 @Autowired
 CircuitBreakerRestController circuitBreakerRestController;
@@ -24,7 +26,7 @@ CircuitBreakerRestController circuitBreakerRestController;
 		SpringApplication.run(GatewayServiceApplication.class, args);
 	}
    @Bean
-	//configurer  spring cloud gateway statiquement
+	//configurer  spring cloud gateway statiquement pour les API public
 	RouteLocator StaticRoutes(RouteLocatorBuilder builder)
 {
 	return builder.routes()
